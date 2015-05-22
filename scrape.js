@@ -1,4 +1,4 @@
-funtion abc() {
+function abc() {
   var output = [];
 var stackIndex = [];
 var stackLevel = [];
