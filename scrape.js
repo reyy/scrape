@@ -24,7 +24,7 @@ for(var j = 0; j<mainlist.length; j++)
     stackIndex.push(stackIndex[0][stackIndex[0].length-1]);
     stackIndex.push(stackLevel - 20);
   }
-    console.out(stackIndex, stackLevel);
+    console.log(stackIndex, stackLevel);
 
   if(stackLevel[0] == curLevel)
   {
