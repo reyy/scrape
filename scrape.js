@@ -1,7 +1,7 @@
 function abc() {
-  var output = [];
-var stackIndex = [];
-var stackLevel = [];
+  var output = new Array();
+var stackIndex = new Array();
+var stackLevel = new Array();
 
 var mainlist = $('img + input + input');
 for(var j = 0; j<mainlist.length; j++)
@@ -9,7 +9,7 @@ for(var j = 0; j<mainlist.length; j++)
   var curLevel = parseInt(mainlist[j].style.width);
   if(stackIndex.length == 0)
   {
-    stackIndex.push(output);
+    stackIndex.push(output.slice());
     stackLevel.push(curLevel);
   }
 
@@ -21,7 +21,7 @@ for(var j = 0; j<mainlist.length; j++)
 
   while(stackLevel[0] > curLevel)
   {
-    stackIndex.push(stackIndex[0][stackIndex[0].length-1]);
+    //stackIndex.push(stackIndex[0][stackIndex[0].length-1].slice());
     stackIndex.push(stackLevel - 20);
   }
     console.log(stackIndex, stackLevel);
