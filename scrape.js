@@ -1,4 +1,7 @@
-function crawlInfo(id)
+var callCount = 0;
+var doneCount = 0;
+
+function crawlInfo(id, jsonObj)
 {
   var answer = null;
   artoo.ajaxSpider(
@@ -14,16 +17,11 @@ function crawlInfo(id)
     },
     function(data) {
       console.log('Retrieved data:', data[0][0]);
-      answer = data[0][0];
+      for (var attrname in pageInfo) { jsonObj[attrname] = pageInfo[attrname]; }
+      doneCount++;
     }
   );
-  while(answer == null)
-  {
-    //WAIT
-  }
-
-  return answer;
-}
+  
 
 function iterateTree()
 {
@@ -68,8 +66,8 @@ function iterateTree()
       topOfStack[topOfStack.length-1].id = pageId;
       topOfStack[topOfStack.length-1].childPages = new Array();
 
-      var pageInfo = crawlInfo(pageId);
-      for (var attrname in pageInfo) { topOfStack[topOfStack.length-1][attrname] = pageInfo[attrname]; }
+      callCount++;
+      var pageInfo = crawlInfo(pageId, topOfStack[topOfStack.length-1]);
     }
     
     //i++;
@@ -77,4 +75,5 @@ function iterateTree()
   return output[0];
 }
 
-artoo.savePrettyJson(iterateTree());
+var ans = iterateTree();
+var checker = setInterval(function () {if(doneCount>=callCount) {artoo.savePrettyJson(ans); clearInterval(checker);} else console.log(doneCount+"/"+callCount)}, 3000);
