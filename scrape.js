@@ -23,7 +23,7 @@ for(var j = 0; j<mainlist.length; j++)
   while(stackLevel[0] > curLevel)
   {
     stackIndex.push(stackIndex[0][stackIndex[0].length-1]);
-    stackIndex.push(stackLevel[0] + 20);
+    stackLevel.push(stackLevel[0] + 20);
     curLevel +=20;
   }
     console.log(stackIndex, stackLevel);
