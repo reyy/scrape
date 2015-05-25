@@ -9,7 +9,7 @@ for(var j = 0; j<mainlist.length; j++)
   var curLevel = parseInt(mainlist[j].style.width);
   if(stackIndex.length == 0)
   {
-    stackIndex.push(output);
+    stackIndex = output;
     stackLevel.push(curLevel);
   }
 
