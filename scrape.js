@@ -1,5 +1,6 @@
 function crawlInfo(id)
 {
+  var answer = null;
   artoo.ajaxSpider(
     ['https://confluence.paypal.com/pages/viewinfo.action?pageId='+id],
     {
@@ -13,9 +14,15 @@ function crawlInfo(id)
     },
     function(data) {
       console.log('Retrieved data:', data[0][0]);
-      return data[0][0];
+      answer = data[0][0];
     }
   );
+  while(answer == null)
+  {
+    //WAIT
+  }
+
+  return answer;
 }
 
 function iterateTree()
